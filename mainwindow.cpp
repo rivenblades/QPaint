@@ -20,11 +20,27 @@ MainWindow::MainWindow():ui(new Ui::MainWindow)
     createMenus();
 
     // Set the title
-    setWindowTitle(tr("Scribble"));
+    setWindowTitle(tr("QPaint"));
+
+    QListWidgetItem* item = new QListWidgetItem();
+    ui->layersContainer->insertItem(0,item);
+    //item->setSizeHint(QSize(50,30));
+//    QLabel *label  = new QLabel(QString("Sas"));
+    QLabel *label = new QLabel();//needs pointer.otherwise, crashes when window.show()
+    label->setStyleSheet(QString("border-image: url(:/icons/eye_toggle_on.jpeg);"));
 
 
-    ui->layersContainer->addItem(QString("Layer1"));
+    LayerItem *layer = new LayerItem(ui->MainLayout->widget());
+    ui->layersContainer->setItemWidget(item,layer);
 
+    //ui->layersContainer->addItem(QString("Layer1"));
+//    QPixmap p(QString(":/icons/eye_toggle_on.jpeg")); // load pixmap
+    // get label dimensions
+//    int w = (int)(label->width()/8);
+//    int h = label->height();
+
+    // set a scaled pixmap to a w x h window keeping its aspect ratio
+//    label->setPixmap(p.scaled(w,h,Qt::KeepAspectRatio));
     ui->MainLayout->setStretch(0,80);
     ui->MainLayout->setStretch(1,20);
     ui->layersContainer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);

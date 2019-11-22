@@ -15,7 +15,7 @@ public:
     ScribbleArea *paintArea;
 signals:
     void colorChange(const QColor &color);
-    
+
 public slots:
     void setColor(const QColor &color);
 

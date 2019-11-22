@@ -7,6 +7,9 @@
 #include <QImage>
 #include <QPoint>
 #include <QWidget>
+
+#include "curvemanager.h"
+
 //#include <QtPrintSupport/QPrinter>
 //#include <QtPrintSupport/QPrintDialog>
 class ScribbleArea : public QWidget
@@ -41,6 +44,8 @@ public:
     void setMyPenColor(const QColor &c){myPenColor=c;}
     QColor getBackgroundColor(){return backgroundColor;}
     QColor setBackgroundColor(QColor c){ backgroundColor=c;}
+
+    CurveManager curve;
 public slots:
 
     // Events to handle

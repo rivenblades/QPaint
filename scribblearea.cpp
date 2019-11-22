@@ -129,6 +129,8 @@ void ScribbleArea::mouseReleaseEvent(QMouseEvent *event)
 void ScribbleArea::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::HighQualityAntialiasing);
 
     // Returns the rectangle that needs to be updated
     QRect dirtyRect = event->rect();
@@ -142,6 +144,14 @@ void ScribbleArea::paintEvent(QPaintEvent *event)
     }
     if(bVAxisEnabled){
         painter.drawLine(vMirror_axis_start,vMirror_axis_end);
+    }
+
+    int steps = 1000;
+    std::vector<QPointF> points = {QPointF(50.0f,170.0f),QPointF(150.0f,370.0f),QPointF(250.0f,350),QPointF(400.0f,320.0f),};
+    QPointF oldPoint = points[0];
+    for(QPointF point : curve.bezier_curve_range(steps,points)){
+        painter.drawLine(oldPoint.x(), oldPoint.y(), point.x(), point.y());
+        oldPoint = point;
     }
 
 }
@@ -163,6 +173,8 @@ void ScribbleArea::drawLineTo(const QPoint &endPoint)
 {
     // Used to draw on the widget
     QPainter painter(&image);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::HighQualityAntialiasing);
 
     // Set the current settings for the pen
     painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
@@ -218,6 +230,9 @@ void ScribbleArea::resizeImage(QImage *image, const QSize &newSize)
 
     // Draw the image
     QPainter painter(&newImage);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::HighQualityAntialiasing);
+
     painter.drawImage(QPoint(0, 0), *image);
     *image = newImage;
 }

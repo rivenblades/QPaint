@@ -22,11 +22,15 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         scribblearea.cpp \
+    curvemanager.cpp \
+    layeritem.cpp \
     colorwheel.cpp
 
 HEADERS += \
         mainwindow.h \
         scribblearea.h \
+    curvemanager.h \
+    layeritem.h \
     colorwheel.h
 
 
@@ -42,4 +46,7 @@ DEPENDPATH += $$PWD/extern/glew/include
 
 FORMS += \
     mainwindow.ui
+
+RESOURCES += \
+    icons.qrc
 

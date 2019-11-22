@@ -6,6 +6,8 @@
 #include <QList>
 #include <QMainWindow>
 
+#include "layeritem.h"
+
 // ScribbleArea used to paint the image
 class ScribbleArea;
 namespace Ui {
